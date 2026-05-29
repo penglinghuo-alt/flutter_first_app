@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 import '../../utils/ToastUtils.dart';
-import '../../viewmodels/auth_provider.dart';
-import '../../routes/index.dart';
+import '../../controllers/auth_controller.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -67,22 +66,22 @@ class _LoginPageState extends State<LoginPage> {
 
     if (account.isEmpty) {
       setState(() => _accountError = '账号不能为空');
-      ToastUtils.showError(context, '账号不能为空');
+      ToastUtils.showError(Get.context!, '账号不能为空');
       return;
     }
     if (!_accountPattern.hasMatch(account)) {
       setState(() => _accountError = '账号为 4-16 位字母或数字');
-      ToastUtils.showError(context, '账号格式不正确');
+      ToastUtils.showError(Get.context!, '账号格式不正确');
       return;
     }
     if (password.isEmpty) {
       setState(() => _passwordError = '密码不能为空');
-      ToastUtils.showError(context, '密码不能为空');
+      ToastUtils.showError(Get.context!, '密码不能为空');
       return;
     }
     if (!_passwordPattern.hasMatch(password)) {
       setState(() => _passwordError = '密码为 6-18 位，需包含字母和数字');
-      ToastUtils.showError(context, '密码格式不正确');
+      ToastUtils.showError(Get.context!, '密码格式不正确');
       return;
     }
 
@@ -93,19 +92,19 @@ class _LoginPageState extends State<LoginPage> {
 
     try {
       if (account != _correctAccount || password != _correctPassword) {
-        ToastUtils.showError(context, '账号或密码错误');
+        ToastUtils.showError(Get.context!, '账号或密码错误');
         return;
       }
 
-      final authProvider = Provider.of<AuthProvider>(context, listen: false);
-      authProvider.login(account, 'token_${DateTime.now().millisecondsSinceEpoch}');
+      final authController = Get.find<AuthController>();
+      authController.login(account, 'token_${DateTime.now().millisecondsSinceEpoch}');
 
-      ToastUtils.showSuccess(context, '登录成功，正在跳转...');
+      ToastUtils.showSuccess(Get.context!, '登录成功，正在跳转...');
       Future.delayed(const Duration(seconds: 1), () {
-        Navigator.pushReplacementNamed(context, '/Main');
+        Get.offAllNamed('/Main');
       });
     } catch (e) {
-      ToastUtils.showError(context, '登录异常：${e.toString()}');
+      ToastUtils.showError(Get.context!, '登录异常：${e.toString()}');
     }
   }
 

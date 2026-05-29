@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hm_shop/pages/Login/index.dart';
 import 'package:hm_shop/pages/Main/index.dart';
 
-//返回APP根组件
 Widget getRootWidget() {
-  return MaterialApp(initialRoute: "/Main", routes: getRootRoutes());
+  return GetMaterialApp(initialRoute: "/Main", getPages: getPages());
+}
+
+List<GetPage> getPages() {
+  return [
+    GetPage(name: "/Main", page: () => MainPage()),
+    GetPage(name: "/login", page: () => const LoginPage()),
+  ];
 }
 
 //返回该App的路由配置
