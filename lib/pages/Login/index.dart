@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../utils/ToastUtils.dart';
+import '../../viewmodels/auth_provider.dart';
 import '../../routes/index.dart';
 
 class LoginPage extends StatefulWidget {
@@ -51,45 +53,59 @@ class _LoginPageState extends State<LoginPage> {
     return true;
   }
 
-  bool _validateForm() {
-    final accountValid = _validateAccount();
-    final passwordValid = _validatePassword();
-
-    if (!accountValid || !passwordValid) {
-      ToastUtils.showError(context, '请完善表单信息');
-      return false;
-    }
-
-    if (!_agreedToTerms) {
-      ToastUtils.showError(context, '请勾选同意用户协议');
-      return false;
-    }
-
-    if (_accountController.text.trim() != _correctAccount ||
-        _passwordController.text.trim() != _correctPassword) {
-      ToastUtils.showError(context, '账号或密码错误');
-      return false;
-    }
-
-    return true;
-  }
-
   bool _isLoginButtonEnabled() {
     final account = _accountController.text.trim();
     final password = _passwordController.text.trim();
     return account.isNotEmpty &&
         password.isNotEmpty &&
-        _accountPattern.hasMatch(account) &&
-        _passwordPattern.hasMatch(password) &&
         _agreedToTerms;
   }
 
   void _handleLogin() {
-    if (_validateForm()) {
+    final account = _accountController.text.trim();
+    final password = _passwordController.text.trim();
+
+    if (account.isEmpty) {
+      setState(() => _accountError = '账号不能为空');
+      ToastUtils.showError(context, '账号不能为空');
+      return;
+    }
+    if (!_accountPattern.hasMatch(account)) {
+      setState(() => _accountError = '账号为 4-16 位字母或数字');
+      ToastUtils.showError(context, '账号格式不正确');
+      return;
+    }
+    if (password.isEmpty) {
+      setState(() => _passwordError = '密码不能为空');
+      ToastUtils.showError(context, '密码不能为空');
+      return;
+    }
+    if (!_passwordPattern.hasMatch(password)) {
+      setState(() => _passwordError = '密码为 6-18 位，需包含字母和数字');
+      ToastUtils.showError(context, '密码格式不正确');
+      return;
+    }
+
+    setState(() {
+      _accountError = '';
+      _passwordError = '';
+    });
+
+    try {
+      if (account != _correctAccount || password != _correctPassword) {
+        ToastUtils.showError(context, '账号或密码错误');
+        return;
+      }
+
+      final authProvider = Provider.of<AuthProvider>(context, listen: false);
+      authProvider.login(account, 'token_${DateTime.now().millisecondsSinceEpoch}');
+
       ToastUtils.showSuccess(context, '登录成功，正在跳转...');
       Future.delayed(const Duration(seconds: 1), () {
         Navigator.pushReplacementNamed(context, '/Main');
       });
+    } catch (e) {
+      ToastUtils.showError(context, '登录异常：${e.toString()}');
     }
   }
 

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../viewmodels/auth_provider.dart';
+import '../../utils/ToastUtils.dart';
 
 class MineView extends StatefulWidget {
   MineView({Key? key}) : super(key: key);
@@ -9,37 +12,99 @@ class MineView extends StatefulWidget {
 
 class _MineViewState extends State<MineView> {
   Widget _buildHeader() {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [const Color(0xFFFFF2E8), const Color(0xFFFDF6F1)],
-        ),
-      ),
-      padding: const EdgeInsets.only(left: 20, right: 40, top: 80, bottom: 20),
-      child: Row(
-        children: [
-          CircleAvatar(
-            radius: 26,
-            backgroundImage: const AssetImage('lib/assets/goods_avatar.png'),
-            backgroundColor: Colors.white,
+    return Consumer<AuthProvider>(
+      builder: (context, auth, _) {
+        return Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [const Color(0xFFFFF2E8), const Color(0xFFFDF6F1)],
+            ),
           ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/login');
-                  },
-                  child: Text(
-                    '立即登录',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                  ),
+          padding: const EdgeInsets.only(left: 20, right: 40, top: 80, bottom: 20),
+          child: Row(
+            children: [
+              CircleAvatar(
+                radius: 26,
+                backgroundImage: const AssetImage('lib/assets/goods_avatar.png'),
+                backgroundColor: Colors.white,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    auth.isLoggedIn
+                        ? Text(
+                            '欢迎您，${auth.username ?? '用户'}',
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          )
+                        : GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/login');
+                            },
+                            child: const Text(
+                              '立即登录',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                    if (auth.isLoggedIn) ...[
+                      const SizedBox(height: 4),
+                      TextButton(
+                        onPressed: () => _showLogoutDialog(context),
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          minimumSize: const Size(0, 0),
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
+                        child: const Text(
+                          '退出登录',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.red,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ],
                 ),
-              ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _showLogoutDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('确认退出'),
+        content: const Text('确定要退出登录吗？'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('取消'),
+          ),
+          TextButton(
+            onPressed: () {
+              final auth = Provider.of<AuthProvider>(context, listen: false);
+              auth.logout();
+              Navigator.pop(context);
+              ToastUtils.showSuccess(context, '已退出登录');
+            },
+            child: const Text(
+              '退出',
+              style: TextStyle(color: Colors.red),
             ),
           ),
         ],
