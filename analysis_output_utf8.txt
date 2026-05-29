@@ -1,0 +1,73 @@
+﻿flutter : Flutter assets will be downloaded from https://storage.flutter-io.cn.
+ Make sure you trust this source!
+所在位置 行:1 字符: 49
++ ... \hm_shop" ; flutter analyze --no-fatal-infos --no-fatal-warnings lib/ ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Flutter assets ...st this source! 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Analyzing 4 items...                                            
+
+  error - Classes can only extend other classes. Try specifying a different superclass, or removing the extends clause - lib\components\home\hmmorelist.dart:1:26 - extends_non_class
+  error - The name 'GoodDetailItem' isn't a type, so it can't be used as a type argument. Try correcting the name to an existing type, or defining a type named 'GoodDetailItem' - lib\components\home\hmmorelist.dart:3:14 - non_type_as_type_argument
+  error - Undefined class 'Key'. Try changing the name to the name of an existing class, or creating a class with the name 'Key' - lib\components\home\hmmorelist.dart:5:15 - undefined_class
+  error - The named parameter 'key' isn't defined. Try correcting the name to an existing named parameter's name, or defining a named parameter with the name 'key' - lib\components\home\hmmorelist.dart:5:63 - undefined_named_parameter
+   info - Invalid use of a private type in a public API. Try making the private type public, or making the API that uses the private type also be private - lib\components\home\hmmorelist.dart:8:3 - library_private_types_in_public_api
+warning - The method doesn't override an inherited method. Try updating this class to match the superclass, or removing the override annotation - lib\components\home\hmmorelist.dart:8:20 - override_on_non_overriding_member
+  error - Classes can only extend other classes. Try specifying a different superclass, or removing the extends clause - lib\components\home\hmmorelist.dart:11:32 - extends_non_class
+  error - Undefined class 'Widget'. Try changing the name to the name of an existing class, or creating a class with the name 'Widget' - lib\components\home\hmmorelist.dart:12:3 - undefined_class
+  error - The method 'Container' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'Container' - lib\components\home\hmmorelist.dart:13:12 - undefined_method
+  error - The method 'Column' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'Column' - lib\components\home\hmmorelist.dart:14:14 - undefined_method
+  error - The method 'ClipRRect' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'ClipRRect' - lib\components\home\hmmorelist.dart:16:11 - undefined_method
+  error - Undefined name 'BorderRadius'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:17:27 - undefined_identifier
+  error - The method 'AspectRatio' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'AspectRatio' - lib\components\home\hmmorelist.dart:18:20 - undefined_method
+  error - Undefined name 'Image'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:20:22 - undefined_identifier
+  error - Undefined name 'widget'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:21:17 - undefined_identifier
+  error - Undefined name 'BoxFit'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:22:22 - undefined_identifier
+  error - Undefined name 'Image'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:24:26 - undefined_identifier
+  error - Undefined name 'BoxFit'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:26:26 - undefined_identifier
+  error - The method 'SizedBox' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'SizedBox' - lib\components\home\hmmorelist.dart:32:11 - undefined_method
+  error - The method 'Padding' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'Padding' - lib\components\home\hmmorelist.dart:33:11 - undefined_method
+  error - Undefined name 'EdgeInsets'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:34:22 - undefined_identifier
+  error - The method 'Text' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'Text' - lib\components\home\hmmorelist.dart:35:20 - undefined_method
+  error - Undefined name 'widget'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:36:15 - undefined_identifier
+  error - Undefined name 'TextOverflow'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:38:25 - undefined_identifier
+  error - The method 'TextStyle' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'TextStyle' - lib\components\home\hmmorelist.dart:39:22 - undefined_method
+  error - Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:39:39 - undefined_identifier
+  error - The method 'SizedBox' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'SizedBox' - lib\components\home\hmmorelist.dart:42:11 - undefined_method
+  error - The method 'Padding' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'Padding' - lib\components\home\hmmorelist.dart:43:11 - undefined_method
+  error - Undefined name 'EdgeInsets'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:44:22 - undefined_identifier
+  error - The method 'Row' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'Row' - lib\components\home\hmmorelist.dart:45:20 - undefined_method
+  error - Undefined name 'MainAxisAlignment'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:46:34 - undefined_identifier
+  error - Undefined name 'Text'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:48:17 - undefined_identifier
+  error - The method 'TextSpan' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'TextSpan' - lib\components\home\hmmorelist.dart:49:19 - undefined_method
+  error - Undefined name 'widget'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:50:31 - undefined_identifier
+  error - The method 'TextStyle' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'TextStyle' - lib\components\home\hmmorelist.dart:51:28 - undefined_method
+  error - Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:52:30 - undefined_identifier
+  error - Undefined name 'FontWeight'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:54:35 - undefined_identifier
+  error - The method 'TextSpan' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'TextSpan' - lib\components\home\hmmorelist.dart:57:23 - undefined_method
+  error - The method 'TextSpan' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'TextSpan' - lib\components\home\hmmorelist.dart:58:23 - undefined_method
+  error - Undefined name 'widget'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:59:34 - undefined_identifier
+  error - The method 'TextStyle' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'TextStyle' - lib\components\home\hmmorelist.dart:60:32 - undefined_method
+  error - Undefined name 'TextDecoration'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:61:39 - undefined_identifier
+  error - Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:62:34 - undefined_identifier
+  error - The method 'Text' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'Text' - lib\components\home\hmmorelist.dart:69:17 - undefined_method
+  error - Undefined name 'widget'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:70:22 - undefined_identifier
+  error - The method 'TextStyle' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'TextStyle' - lib\components\home\hmmorelist.dart:71:26 - undefined_method
+  error - Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:71:43 - undefined_identifier
+  error - Undefined class 'Widget'. Try changing the name to the name of an existing class, or creating a class with the name 'Widget' - lib\components\home\hmmorelist.dart:82:3 - undefined_class
+warning - The method doesn't override an inherited method. Try updating this class to match the superclass, or removing the override annotation - lib\components\home\hmmorelist.dart:82:10 - override_on_non_overriding_member
+  error - Undefined class 'BuildContext'. Try changing the name to the name of an existing class, or creating a class with the name 'BuildContext' - lib\components\home\hmmorelist.dart:82:16 - undefined_class
+  error - Undefined name 'SliverGrid'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:84:12 - undefined_identifier
+  error - Undefined name 'widget'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:85:18 - undefined_identifier
+  error - The method 'SliverGridDelegateWithFixedCrossAxisCount' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'SliverGridDelegateWithFixedCrossAxisCount' - lib\components\home\hmmorelist.dart:88:11 - undefined_method
+  error - Undefined class 'BuildContext'. Try changing the name to the name of an existing class, or creating a class with the name 'BuildContext' - lib\components\home\hmmorelist.dart:94:21 - undefined_class
+  error - The method 'Padding' isn't defined for the type '_HmMoreListState'. Try correcting the name to the name of an existing method, or defining a method named 'Padding' - lib\components\home\hmmorelist.dart:95:16 - undefined_method
+  error - Undefined name 'EdgeInsets'. Try correcting the name to one that is defined, or defining the name - lib\components\home\hmmorelist.dart:96:20 - undefined_identifier
+   info - The private field _goodsList could be 'final'. Try making the field 'final' - lib\pages\home\index.dart:21:19 - prefer_final_fields
+warning - The value of the field '_goodsList' isn't used. Try removing the field, or using it - lib\pages\home\index.dart:21:19 - unused_field
+   info - The 'children' argument should be last in widget constructor invocations. Try moving the argument to the end of the argument list - lib\pages\home\index.dart:137:17 - sort_child_properties_last
+  error - The element type 'HmMoreList' can't be assigned to the list type 'Widget' - lib\pages\home\index.dart:151:11 - list_element_type_not_assignable
+
+60 issues found. (ran in 1.4s)

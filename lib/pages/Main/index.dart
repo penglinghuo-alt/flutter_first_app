@@ -12,6 +12,8 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  int _currentIndex = 0;
+
   List<Widget> _getChildren() => [
     HomeView(),
     CategoryView(),
@@ -24,7 +26,6 @@ class _MainPageState extends State<MainPage> {
     //定义数据 根据数据进行渲染4个导航
     //一般应用程序的导航是固定的
 
-    int _currentIndex = 0;
     final List<Map<String, String>> _tabList = [
       {
         "icon": "lib/assets/ic_public_home_normal.png", //正常显示的图标
