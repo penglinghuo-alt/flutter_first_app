@@ -22,39 +22,61 @@ class _HmHotState extends State<HmHot> {
     return widget.result.subTypes.first.goodsItems.items.take(2).toList();
   }
 
-  // 构建子项
   List<Widget> _getChildrenList() {
+    if (_items.isEmpty) {
+      return [
+        Expanded(
+          child: Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: Text(
+              widget.type == "step" ? "暂无数据" : "暂无商品",
+              style: TextStyle(color: Colors.white70, fontSize: 12),
+            ),
+          ),
+        ),
+      ];
+    }
+
     return _items.map((item) {
-      return Container(
-        width: 80,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                item.picture,
-                width: 80,
-                height: 100,
-                errorBuilder: (context, error, stackTrace) {
-                  return Image.asset(
-                    "lib/assets/home_cmd_inner.png",
-                    width: 80,
-                    height: 100,
-                  );
-                },
+      return Expanded(
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 4),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AspectRatio(
+                aspectRatio: 0.75,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.network(
+                    item.picture,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Image.asset(
+                        "lib/assets/home_cmd_inner.png",
+                        fit: BoxFit.cover,
+                      );
+                    },
+                  ),
+                ),
               ),
-            ),
-            SizedBox(height: 5),
-            Text(
-              "¥${item.price}",
-              style: TextStyle(
-                fontSize: 12,
-                color: const Color.fromARGB(255, 86, 24, 20),
+              SizedBox(height: 5),
+              Flexible(
+                child: Text(
+                  "¥${item.price}",
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: const Color.fromARGB(255, 86, 24, 20),
+                  ),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
     }).toList();
@@ -98,11 +120,9 @@ class _HmHotState extends State<HmHot> {
         ),
         child: Column(
           children: [
-            // 顶部内容
             _buildHeader(),
             SizedBox(height: 10),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: _getChildrenList(),
             ),
           ],

@@ -19,24 +19,21 @@ class _HmSliderState extends State<HmSlider> {
   CarouselSliderController _Controller = CarouselSliderController();
 
   Widget _getSlider() {
-    //在flutter中获取屏幕宽度的方法
-    final double screenWidth = MediaQuery.of(context).size.width;
-    //返回轮播图插件
     return CarouselSlider(
-      carouselController: _Controller, //轮播图控制器,给轮播图绑定
-      //需要绑定CarouselSliderController的animateToPage方法，实现跳转
-      items: List.generate(widget.bannerList.length, (index) {
+      carouselController: _Controller,
+      items: widget.bannerList.map((banner) {
         return Image.network(
-          widget.bannerList[index].imageUrl!,
+          banner.imageUrl!,
           fit: BoxFit.cover,
-          width: screenWidth,
+          width: double.infinity,
         );
-      }),
+      }).toList(),
       options: CarouselOptions(
         viewportFraction: 1.0,
         autoPlay: true,
         autoPlayInterval: Duration(seconds: 3),
         height: 300,
+        enlargeCenterPage: false,
         onPageChanged: (index, reason) {
           setState(() {
             _currentIndex = index;

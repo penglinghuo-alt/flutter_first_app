@@ -40,16 +40,18 @@ class _HmSuggestionState extends State<HmSuggestion> {
   }
 
   Widget buildLeft() {
-    return SizedBox(
-      width: 90,
-      height: 140,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: Colors.blue,
-          image: DecorationImage(
-            image: AssetImage("lib/assets/home_cmd_sm.png"),
-            fit: BoxFit.cover,
+    return Flexible(
+      flex: 2,
+      child: AspectRatio(
+        aspectRatio: 0.7,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: Colors.blue,
+            image: DecorationImage(
+              image: AssetImage("lib/assets/home_cmd_sm.png"),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
       ),
@@ -134,16 +136,22 @@ class _HmSuggestionState extends State<HmSuggestion> {
         child: Column(
           children: [
             buildHeader(),
-            Row(
-              children: [
-                buildLeft(),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: _getChildrenList(),
+            SizedBox(height: 8),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8),
+              child: Row(
+                children: [
+                  buildLeft(),
+                  SizedBox(width: 8),
+                  Expanded(
+                    flex: 3,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: _getChildrenList(),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
