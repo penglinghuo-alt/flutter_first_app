@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hm_shop/viewmodels/home.dart';
 
 class HmMoreList extends StatefulWidget {
-  // 推荐列表
   final List<GoodDetailItem> recommendList;
 
   HmMoreList({Key? key, required this.recommendList}) : super(key: key);
@@ -27,77 +26,9 @@ class _HmMoreListState extends State<HmMoreList> {
     }
     return Image.asset(picture, fit: BoxFit.cover);
   }
-}
-    return Image.asset(picture, fit: BoxFit.cover);
-  }
-
-  Widget _getChildren(int index) {
-    return Container(
-      child: Column(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: AspectRatio(
-              aspectRatio: 1.0,
-              child: _buildImage(widget.recommendList[index].picture),
-            ),
-          ),
-          SizedBox(height: 6),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Text(
-              widget.recommendList[index].name,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: Colors.black, fontSize: 20),
-            ),
-          ),
-          SizedBox(height: 6),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text.rich(
-                  TextSpan(
-                    text: "¥${widget.recommendList[index].price}",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w800,
-                    ),
-                    children: [
-                      TextSpan(text: " "),
-                      TextSpan(
-                        text: "${widget.recommendList[index].price}",
-                        style: TextStyle(
-                          decoration: TextDecoration.lineThrough,
-                          color: Colors.grey,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Text(
-                  "${widget.recommendList[index].payCount}人付款",
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final crossAxisSpacing = 10.0 * 2;
-    final itemWidth = (screenWidth - crossAxisSpacing) / 2;
-    final itemHeight = itemWidth / 0.78;
-
     return SliverGrid.builder(
       itemCount: widget.recommendList.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -113,8 +44,10 @@ class _HmMoreListState extends State<HmMoreList> {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                aspectRatio: 1.0,
-                child: _buildImage(widget.recommendList[index].picture),
+                child: AspectRatio(
+                  aspectRatio: 1.0,
+                  child: _buildImage(widget.recommendList[index].picture),
+                ),
               ),
               SizedBox(height: 6),
               Text(
